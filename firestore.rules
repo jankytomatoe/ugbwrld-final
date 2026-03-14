@@ -1,0 +1,80 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: users
+    // Document ID: {userId}
+    // Fields:
+    //   - uid: string (required, immutable) - The user's ID
+    //   - favorites: list (optional) - List of favorited game IDs
+    //   - createdAt: timestamp (required, immutable) - Creation time
+    //   - updatedAt: timestamp (required) - Last update time
+    //
+    // ===============================================================
+    
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    function hasOnlyAllowedFields(fields) {
+      return request.resource.data.keys().hasOnly(fields);
+    }
+    
+    function hasRequiredFields(fields) {
+      return request.resource.data.keys().hasAll(fields);
+    }
+    
+    function uidUnchanged() {
+      return !('uid' in request.resource.data) || request.resource.data.uid == request.auth.uid;
+    }
+    
+    function uidNotModified() {
+      return !('uid' in request.resource.data) || request.resource.data.uid == resource.data.uid;
+    }
+    
+    function areImmutableFieldsUnchanged(fields) {
+      return !request.resource.data.diff(resource.data).affectedKeys().hasAny(fields);
+    }
+    
+    function isValidList(listVar, maxSize) {
+      return listVar is list && listVar.size() <= maxSize;
+    }
+    
+    // Domain Validators
+    function isValidUserProfile(data) {
+      return hasOnlyAllowedFields(['uid', 'favorites', 'createdAt', 'updatedAt']) &&
+             data.uid is string && data.uid.size() > 0 && data.uid.size() < 100 &&
+             (!('favorites' in data) || isValidList(data.favorites, 1000)) &&
+             data.createdAt is timestamp &&
+             data.updatedAt is timestamp;
+    }
+    
+    // ===============================================================
+    // Rules
+    // ===============================================================
+    
+    match /users/{userId} {
+      allow read: if isOwner(userId);
+      allow create: if isOwner(userId) && 
+                       isValidUserProfile(request.resource.data) && 
+                       hasRequiredFields(['uid', 'createdAt', 'updatedAt']) &&
+                       uidUnchanged();
+      allow update: if isOwner(userId) && 
+                       isValidUserProfile(request.resource.data) &&
+                       hasRequiredFields(['uid', 'createdAt', 'updatedAt']) &&
+                       uidNotModified() &&
+                       areImmutableFieldsUnchanged(['createdAt']);
+      allow delete: if isOwner(userId);
+    }
+  }
+}
