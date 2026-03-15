@@ -3095,7 +3095,7 @@
     "cover": "{COVER_URL}/366.png",
     "url": "{HTML_URL}/366.html",
     "author": "idfk",
-    "authorLink": "https://gn-math.github.io"
+    "authorLink": ""
   },
   {
     "id": 367,
@@ -3111,7 +3111,7 @@
     "cover": "{COVER_URL}/368.png",
     "url": "{HTML_URL}/368.html",
     "author": "idfk",
-    "authorLink": "https://gn-math.github.io"
+    "authorLink": ""
   },
   {
     "id": 369,
@@ -3793,17 +3793,6 @@
     "authorLink": "https://booleet.itch.io/station-saturn"
   },
   {
-    "id": 454,
-    "name": "BLOODMONEY!",
-    "cover": "{COVER_URL}/454.png",
-    "url": "{HTML_URL}/454.html",
-    "author": "SHROOMYCHRIST-STUDIOS",
-    "authorLink": "https://shroomychrist-studios.itch.io/bloodmoney",
-    "special": [
-      "port"
-    ]
-  },
-  {
     "id": 455,
     "name": "BERGENTRUCK 201x",
     "cover": "{COVER_URL}/455.png",
@@ -4063,17 +4052,6 @@
     "url": "{HTML_URL}/481.html",
     "author": "Banbuds etc",
     "authorLink": "https://gamebanana.com/mods/44334"
-  },
-  {
-    "id": 482,
-    "name": "Human Expenditure Program",
-    "cover": "{COVER_URL}/482.png",
-    "url": "{HTML_URL}/482-2.html",
-    "author": "SHROOMYCHRIST-STUDIOS",
-    "authorLink": "https://shroomychrist-studios.itch.io/",
-    "special": [
-      "port"
-    ]
   },
   {
     "id": 483,
@@ -4905,9 +4883,9 @@
   },
   {
     "id": 581,
-    "name": "BuildNow.gg",
-    "cover": "{COVER_URL}/581.png",
-    "url": "{HTML_URL}/581.html",
+    "name": "Buildnow GG",
+    "cover": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstickmanhook2.io%2Fdata%2Fimage%2Fbuildnow-gg.jpg&f=1&ipt=ff06f0fc1be5b9e81225cf2930aea22eb29193d02f61b0bda56e876b2f07905f",
+    "url": "/buildnow-gg.html",
     "author": "CrazyGames",
     "authorLink": "https://www.crazygames.com/"
   },
@@ -5753,7 +5731,7 @@
     "cover": "{COVER_URL}/668.png",
     "url": "{HTML_URL}/668-fix2.html",
     "author": "Another Axiom Inc, Boolonx",
-    "authorLink": "https://boolonx.com/gtag/?utm_source=gn-math.dev&utm_medium=referral&utm_campaign=gn-math.dev",
+    "authorLink": "https://boolonx.com/gtag/",
     "special": [
       "port"
     ]
@@ -6134,7 +6112,7 @@
     "cover": "{COVER_URL}/704.png",
     "url": "{HTML_URL}/704-fix.html",
     "author": "Pyturret, Willowy (squall.cc)",
-    "authorLink": "https://squall.cc?utm_source=gn-math.dev&utm_medium=referral&utm_campaign=gn-math.dev",
+    "authorLink": "https://squall.cc",
     "special": [
       "port"
     ]
@@ -6176,7 +6154,7 @@
     "cover": "{COVER_URL}/708.png",
     "url": "{HTML_URL}/708-fix.html",
     "author": "WSS playground, EDURocks",
-    "authorLink": "https://edurocks.org?utm_source=gn-math.dev&utm_medium=referral&utm_campaign=gn-math.dev",
+    "authorLink": "https://edurocks.org",
     "special": [
       "port"
     ]
@@ -6664,6 +6642,17 @@
     "authorLink": "https://poki.com/en/g/drive-mad",
     "special": [
       "driving"
+    ]
+  },
+  {
+    "id": 757,
+    "name": "Class of '09",
+    "cover": "{COVER_URL}/757.png",
+    "url": "{HTML_URL}/757.html",
+    "author": "SBN3",
+    "authorLink": "https://store.steampowered.com/app/1598490/Class_of_09/",
+    "special": [
+      "port"
     ]
   }
 ]
