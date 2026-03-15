@@ -982,14 +982,6 @@
     ]
   },
   {
-    "id": 114,
-    "name": "2048",
-    "cover": "{COVER_URL}/114.png",
-    "url": "{HTML_URL}/114-f.html",
-    "author": "Gabriele Cirulli",
-    "authorLink": "https://github.com/gabrielecirulli"
-  },
-  {
     "id": 115,
     "name": "8 Ball Pool",
     "cover": "{COVER_URL}/115.png",
