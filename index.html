@@ -26,16 +26,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UBG World</title>
     <meta name="title" content="UBG World">
-    <meta name="description" content="Play unblocked games like Crazy Cattle 3D and DriveMad on UBG World. Fast, free, no downloads�perfect for school or home.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ugbworld.com/">
-    <meta property="og:title" content="UBG World">
-    <meta property="og:description" content="Play unblocked games like Crazy Cattle 3D and DriveMad on UBG World. Fast, free, no downloads�perfect for school or home.">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://ugbworld.com/">
-    <meta name="twitter:title" content="UBG World">
-    <meta name="twitter:description" content="Play unblocked games like Crazy Cattle 3D and DriveMad on UBG World. Fast, free, no downloads�perfect for school or home.">
-    <link rel="stylesheet" href="/src/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jankytomatoe/ugbwrld-final@master/src/index.css">
     <meta name="theme-color" content="#fb2651">
 
 
@@ -80,10 +71,10 @@
     </header>
 	<main>
    <br>
-        <details id="featuredZonesWrapper" open>
-            <summary id="allZonesSummary">Featured Zones</summary>
+        <div id="featuredZonesWrapper">
+            <h2 id="allZonesSummary">Featured</h2>
             <div id="featuredZones" class="zone-container"></div>
-</details>
+        </div>
 
 
         <br><hr><br>
@@ -135,12 +126,7 @@ let zoneFrame = document.getElementById('zoneFrame');
 const searchBar = document.getElementById('searchBar');
 const sortOptions = document.getElementById('sortOptions');
 const filterOptions = document.getElementById('filterOptions');
-const zonesurls = [
-    "https://cdn.jsdelivr.net/gh/%67%6e%2d%6d%61%74%68/assets@latest/zones.json",
-    "https://cdn.jsdelivr.net/gh/%67%6e%2d%6d%61%74%68/assets@master/zones.json",
-    "https://cdn.jsdelivr.net/gh/%67%6e%2d%6d%61%74%68/assets/zones.json"
-];
-let zonesURL = zonesurls[Math.floor(Math.random() * zonesurls.length)];
+const zonesURL = "https://cdn.jsdelivr.net/gh/jankytomatoe/ugbwrld-final@master/public/games.json";
 const coverURL = "https://cdn.jsdelivr.net/gh/%67%6e%2d%6d%61%74%68/covers@main";
 const htmlURL = "https://cdn.jsdelivr.net/gh/%67%6e%2d%6d%61%74%68/html@main";
 let zones = [];
@@ -154,7 +140,7 @@ function toTitleCase(str) {
 }
 async function listZones() {
     try {
-        const response = await fetch("/games.json?t="+Date.now());
+        const response = await fetch(zonesURL + "?t=" + Date.now());
         const json = await response.json();
         zones = json;
         await Promise.all([fetchPopularity("year"), fetchPopularity("month"), fetchPopularity("week"), fetchPopularity("day")]);
@@ -174,10 +160,7 @@ async function listZones() {
                         fetch(url+"?t="+Date.now()).then(response => response.text()).then(html => {
                             document.documentElement.innerHTML = html;
                             const popup = document.createElement("div");
-                            popup.className = "embed-popup";
-                            
-                            popup.innerHTML = `Play more games at <a href="https://ugbworld.com" target="_blank" class="popup-link">https://ugbworld.com</a>!`;
-                            
+                            popup.className = "embed-popup";                            
                             const closeBtn = document.createElement("button");
                             closeBtn.innerText = "?";
                             closeBtn.className = "embed-popup-close";
@@ -266,10 +249,12 @@ function applyFilters() {
     }
     
     const query = searchBar.value.toLowerCase();
+    const featuredZonesWrapper = document.getElementById("featuredZonesWrapper");
     if (query) {
         filteredZones = filteredZones.filter(zone => zone.name.toLowerCase().includes(query));
-        const featuredZonesWrapper = document.getElementById("featuredZonesWrapper");
-        if (featuredZonesWrapper) featuredZonesWrapper.removeAttribute("open");
+        if (featuredZonesWrapper) featuredZonesWrapper.style.display = "none";
+    } else {
+        if (featuredZonesWrapper) featuredZonesWrapper.style.display = "block";
     }
     
     displayZones(filteredZones);
@@ -327,7 +312,7 @@ function displayFeaturedZones(featuredZones) {
     if (featuredContainer.innerHTML === "") {
         featuredContainer.innerHTML = "No featured zones found.";
     } else {
-        document.getElementById("allZonesSummary").textContent = `Featured Zones (${featuredZones.length})`;
+        document.getElementById("allZonesSummary").textContent = `Featured (${featuredZones.length})`;
     }
 
     const lazyImages = document.querySelectorAll('#featuredZones img.lazy-zone-img');
