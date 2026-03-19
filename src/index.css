@@ -80,15 +80,14 @@
     cursor: pointer;
 }
     .logo::before {
-    content: "UBG";
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    background-color: var(--accent);
-    border-radius: 0.75rem;
-    box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.2);
+    content: "";
+    background-image: url("https://external-content.duckduckgo.com/ip3/ultimate-algebra.com.ico");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 0;
     transition: transform 0.2s;
     font-size: 0.8rem;
 }

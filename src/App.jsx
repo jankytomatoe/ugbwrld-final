@@ -45,10 +45,10 @@ export default function App() {
       link.href = cloakIcon || 'https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png';
       document.getElementsByTagName('head')[0].appendChild(link);
     } else {
-      document.title = 'UBG World';
+      document.title = 'Ultimate Math';
       const link = document.querySelector("link[rel~='icon']");
       if (link) {
-        link.href = '/vite.svg'; // Default Vite icon, or fallback
+        link.href = 'https://external-content.duckduckgo.com/ip3/ultimate-algebra.com.ico'; // Default icon, or fallback
       }
     }
   }, [isCloaked, cloakTitle, cloakIcon]);
@@ -105,10 +105,10 @@ export default function App() {
             onClick={() => setSelectedGame(null)}
           >
             <div className="logo-icon">
-              <Gamepad2 className="text-black w-6 h-6" />
+              <img src="https://external-content.duckduckgo.com/ip3/ultimate-algebra.com.ico" alt="Ultimate Math Logo" className="w-6 h-6" />
             </div>
             <h1 className="logo-text">
-              UBG<span className="logo-accent">WORLD</span>
+              Ultimate<span className="logo-accent">MATH</span>
             </h1>
           </div>
 
@@ -440,8 +440,8 @@ export default function App() {
         <footer className="footer">
           <div className="footer-content">
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Gamepad2 style={{ color: '#10b981' }} />
-              <span style={{ fontWeight: 'bold' }}>UBG WORLD</span>
+              <img src="https://external-content.duckduckgo.com/ip3/ultimate-algebra.com.ico" alt="Ultimate Math Logo" className="w-5 h-5" />
+              <span style={{ fontWeight: 'bold' }}>ULTIMATE MATH</span>
             </div>
             <div className="footer-links">
               <a href="#">Terms</a>
@@ -449,7 +449,7 @@ export default function App() {
               <a href="#">Contact</a>
               <a href="#">DMCA</a>
             </div>
-            <p className="footer-copy">© 2026 UBG World. All rights reserved.</p>
+            <p className="footer-copy">© 2026 Ultimate Math. All rights reserved.</p>
           </div>
         </footer>
       )}
