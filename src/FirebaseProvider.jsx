@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { auth, db } from './firebase';
 import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut } from 'firebase/auth';
 import { doc, getDoc, setDoc, updateDoc, onSnapshot, getDocFromServer } from 'firebase/firestore';
@@ -61,6 +61,7 @@ export function FirebaseProvider({ children }) {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setIsAuthReady(true);
+      if (!currentUser) setUserData(null);
     });
     return unsubscribe;
   }, []);
@@ -92,8 +93,6 @@ export function FirebaseProvider({ children }) {
       });
 
       return unsubscribe;
-    } else {
-      setUserData(null);
     }
   }, [user, isAuthReady]);
 

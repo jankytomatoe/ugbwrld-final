@@ -22,7 +22,7 @@ export class ErrorBoundary extends React.Component {
         if (parsed.error) {
           errorMessage = `Firestore Error: ${parsed.error} (Operation: ${parsed.operationType}, Path: ${parsed.path})`;
         }
-      } catch (e) {
+      } catch {
         // Not a JSON error message
       }
 

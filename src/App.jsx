@@ -48,7 +48,7 @@ export default function App() {
       document.title = 'Ultimate Math';
       const link = document.querySelector("link[rel~='icon']");
       if (link) {
-        link.href = 'https://external-content.duckduckgo.com/ip3/ultimate-algebra.com.ico'; // Default icon, or fallback
+        link.href = '/vite.svg'; // Default Vite icon, or fallback
       }
     }
   }, [isCloaked, cloakTitle, cloakIcon]);
@@ -105,10 +105,10 @@ export default function App() {
             onClick={() => setSelectedGame(null)}
           >
             <div className="logo-icon">
-              <img src="https://external-content.duckduckgo.com/ip3/ultimate-algebra.com.ico" alt="Ultimate Math Logo" className="w-6 h-6" />
+              <img src="https://unavatar.io/youtube/UltimateAlgebra" alt="Ultimate Math" style={{ width: '24px', height: '24px', borderRadius: '50%' }} />
             </div>
             <h1 className="logo-text">
-              Ultimate<span className="logo-accent">MATH</span>
+              Ultimate <span className="logo-accent">Math</span>
             </h1>
           </div>
 
@@ -426,7 +426,7 @@ export default function App() {
                   title={selectedGame.title}
                   srcDoc={selectedGame.html}
                   className="game-iframe"
-                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-pointer-lock"
+                  sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock"
                   allowFullScreen
                 />
               </div>
@@ -440,8 +440,8 @@ export default function App() {
         <footer className="footer">
           <div className="footer-content">
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <img src="https://external-content.duckduckgo.com/ip3/ultimate-algebra.com.ico" alt="Ultimate Math Logo" className="w-5 h-5" />
-              <span style={{ fontWeight: 'bold' }}>ULTIMATE MATH</span>
+              <img src="https://unavatar.io/youtube/UltimateAlgebra" alt="Ultimate Math" style={{ width: '20px', height: '20px', borderRadius: '50%' }} />
+              <span style={{ fontWeight: 'bold' }}>Ultimate Math</span>
             </div>
             <div className="footer-links">
               <a href="#">Terms</a>
