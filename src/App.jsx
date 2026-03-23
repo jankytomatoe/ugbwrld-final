@@ -32,7 +32,7 @@ export default function App() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [filteredGames, setFilteredGames] = useState(gamesData);
   const [isCloaked, setIsCloaked] = useState(false);
-  const [showCloakModal, setShowCloakModal] = useState(false);
+  const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [cloakTitle, setCloakTitle] = useState('');
   const [cloakIcon, setCloakIcon] = useState('');
 
@@ -148,7 +148,7 @@ export default function App() {
                 Refresh
               </button>
               <button 
-                onClick={() => setShowCloakModal(true)}
+                onClick={() => setShowSettingsModal(true)}
                 style={{ 
                   background: isCloaked ? 'rgba(16, 185, 129, 0.2)' : 'rgba(255,255,255,0.05)', 
                   border: '1px solid rgba(255,255,255,0.1)', 
@@ -162,10 +162,10 @@ export default function App() {
                   fontSize: '0.875rem',
                   fontWeight: '500'
                 }}
-                title="Tab Cloak"
+                title="Settings & Cloak"
               >
                 <Shield size={18} />
-                {isCloaked ? 'Cloaked' : 'Cloak'}
+                Settings
               </button>
               <button style={{ backgroundColor: 'white', color: 'black', padding: '0.5rem 1rem', borderRadius: '9999px', fontWeight: 'bold', border: 'none', cursor: 'pointer' }}>
                 Request Game
@@ -398,10 +398,10 @@ export default function App() {
                     {userData?.favorites?.includes(selectedGame.id) ? 'Favorited' : 'Add to favorites'}
                   </button>
                   <button 
-                    onClick={() => setShowCloakModal(true)}
+                    onClick={() => setShowSettingsModal(true)}
                     className="close-game-btn"
                     style={{ color: isCloaked ? '#10b981' : 'white' }}
-                    title="Tab Cloak"
+                    title="Settings"
                   >
                     <Shield size={18} />
                   </button>
@@ -454,9 +454,9 @@ export default function App() {
         </footer>
       )}
 
-      {/* Cloak Modal */}
+      {/* Settings Modal */}
       <AnimatePresence>
-        {showCloakModal && (
+        {showSettingsModal && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -464,72 +464,113 @@ export default function App() {
             style={{
               position: 'fixed',
               top: 0, left: 0, right: 0, bottom: 0,
-              backgroundColor: 'rgba(0,0,0,0.8)',
+              backgroundColor: 'rgba(0,0,0,0.85)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              zIndex: 100
+              zIndex: 100,
+              padding: '1rem'
             }}
-            onClick={() => setShowCloakModal(false)}
+            onClick={() => setShowSettingsModal(false)}
           >
             <motion.div
-              initial={{ scale: 0.95 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.95 }}
+              initial={{ scale: 0.95, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 20 }}
               style={{
-                backgroundColor: '#151515',
+                backgroundColor: '#111',
                 padding: '2rem',
-                borderRadius: '1rem',
+                borderRadius: '1.5rem',
                 width: '100%',
-                maxWidth: '400px',
-                border: '1px solid rgba(255,255,255,0.1)'
+                maxWidth: '500px',
+                maxHeight: '90vh',
+                overflowY: 'auto',
+                border: '1px solid rgba(255,255,255,0.1)',
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
               }}
               onClick={e => e.stopPropagation()}
+              className="hide-scrollbar"
             >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-                <h2 style={{ fontSize: '1.25rem', fontWeight: 'bold' }}>Tab Cloaking</h2>
-                <button onClick={() => setShowCloakModal(false)} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.6)', cursor: 'pointer' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+                <h2 style={{ fontSize: '1.5rem', fontWeight: '800', letterSpacing: '-0.025em' }}>Settings</h2>
+                <button onClick={() => setShowSettingsModal(false)} style={{ background: 'rgba(255,255,255,0.05)', border: 'none', color: 'white', cursor: 'pointer', padding: '0.5rem', borderRadius: '50%' }}>
                   <X size={20} />
                 </button>
               </div>
               
-              <div style={{ marginBottom: '1rem' }}>
-                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)' }}>Tab Title</label>
-                <input 
-                  type="text" 
-                  value={cloakTitle} 
-                  onChange={e => setCloakTitle(e.target.value)}
-                  placeholder="e.g. Google Drive"
-                  style={{ width: '100%', padding: '0.75rem', borderRadius: '0.5rem', backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: 'white', outline: 'none' }}
-                />
-              </div>
-              
-              <div style={{ marginBottom: '1.5rem' }}>
-                <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)' }}>Favicon URL</label>
-                <input 
-                  type="text" 
-                  value={cloakIcon} 
-                  onChange={e => setCloakIcon(e.target.value)}
-                  placeholder="e.g. https://example.com/favicon.ico"
-                  style={{ width: '100%', padding: '0.75rem', borderRadius: '0.5rem', backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: 'white', outline: 'none' }}
-                />
+              {/* Tab Cloaking Section */}
+              <div style={{ marginBottom: '2.5rem' }}>
+                <h3 style={{ fontSize: '1rem', fontWeight: '700', marginBottom: '1rem', color: '#10b981', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <Shield size={16} /> Tab Cloaking
+                </h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                  <div>
+                    <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'rgba(255,255,255,0.4)' }}>Tab Title</label>
+                    <input 
+                      type="text" 
+                      value={cloakTitle} 
+                      onChange={e => setCloakTitle(e.target.value)}
+                      placeholder="e.g. Google Drive"
+                      style={{ width: '100%', padding: '0.75rem', borderRadius: '0.75rem', backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: 'white', outline: 'none', fontSize: '0.875rem' }}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.75rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'rgba(255,255,255,0.4)' }}>Favicon URL</label>
+                    <input 
+                      type="text" 
+                      value={cloakIcon} 
+                      onChange={e => setCloakIcon(e.target.value)}
+                      placeholder="e.g. https://google.com/favicon.ico"
+                      style={{ width: '100%', padding: '0.75rem', borderRadius: '0.75rem', backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: 'white', outline: 'none', fontSize: '0.875rem' }}
+                    />
+                  </div>
+                  <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.5rem' }}>
+                    <button 
+                      onClick={() => { setIsCloaked(true); setShowSettingsModal(false); }}
+                      style={{ flex: 1, padding: '0.75rem', borderRadius: '0.75rem', backgroundColor: '#10b981', color: 'black', fontWeight: '700', border: 'none', cursor: 'pointer', fontSize: '0.875rem' }}
+                    >
+                      Apply Cloak
+                    </button>
+                    {isCloaked && (
+                      <button 
+                        onClick={() => { setIsCloaked(false); setShowSettingsModal(false); }}
+                        style={{ flex: 1, padding: '0.75rem', borderRadius: '0.75rem', backgroundColor: 'rgba(255,255,255,0.05)', color: 'white', fontWeight: '700', border: '1px solid rgba(255,255,255,0.1)', cursor: 'pointer', fontSize: '0.875rem' }}
+                      >
+                        Reset
+                      </button>
+                    )}
+                  </div>
+                </div>
               </div>
 
-              <div style={{ display: 'flex', gap: '1rem' }}>
-                <button 
-                  onClick={() => { setIsCloaked(true); setShowCloakModal(false); }}
-                  style={{ flex: 1, padding: '0.75rem', borderRadius: '0.5rem', backgroundColor: '#10b981', color: 'black', fontWeight: 'bold', border: 'none', cursor: 'pointer' }}
-                >
-                  Apply Cloak
-                </button>
-                {isCloaked && (
-                  <button 
-                    onClick={() => { setIsCloaked(false); setShowCloakModal(false); }}
-                    style={{ flex: 1, padding: '0.75rem', borderRadius: '0.5rem', backgroundColor: 'rgba(255,255,255,0.1)', color: 'white', fontWeight: 'bold', border: 'none', cursor: 'pointer' }}
-                  >
-                    Remove Cloak
-                  </button>
-                )}
+              {/* Legal Sections */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                <section>
+                  <h3 style={{ fontSize: '1rem', fontWeight: '700', marginBottom: '0.75rem', color: 'rgba(255,255,255,0.9)' }}>Privacy Policy</h3>
+                  <p style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.5)', lineHeight: '1.6' }}>
+                    Ultimate Math respects your privacy. We do not sell or share your personal information with third parties. Your game progress and favorites are stored securely using Firebase Authentication.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 style={{ fontSize: '1rem', fontWeight: '700', marginBottom: '0.75rem', color: 'rgba(255,255,255,0.9)' }}>Terms of Service</h3>
+                  <p style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.5)', lineHeight: '1.6' }}>
+                    By using Ultimate Math, you agree to use the service for personal, non-commercial purposes. We are not responsible for any content hosted on external domains linked through our game player.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 style={{ fontSize: '1rem', fontWeight: '700', marginBottom: '0.75rem', color: 'rgba(255,255,255,0.9)' }}>DMCA</h3>
+                  <p style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.5)', lineHeight: '1.6' }}>
+                    Ultimate Math respects intellectual property rights. If you believe your work has been copied in a way that constitutes copyright infringement, please contact us at dmca@ultimatemath.com.
+                  </p>
+                </section>
+
+                <section style={{ borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '1.5rem', marginTop: '1rem' }}>
+                  <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.3)', textAlign: 'center' }}>
+                    © 2026 Ultimate Math. All rights reserved.
+                  </p>
+                </section>
               </div>
             </motion.div>
           </motion.div>
