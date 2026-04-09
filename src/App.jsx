@@ -3,24 +3,17 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Gamepad2, X, Play, Info, Search, ChevronLeft, Maximize, Shield, RefreshCw, Heart, LogIn, LogOut } from 'lucide-react';
+import { X, Play, Search, ChevronLeft, Maximize, Shield, RefreshCw, Heart, LogIn, LogOut } from 'lucide-react';
 import rawGamesData from './games.json';
 import { useFirebase } from './FirebaseProvider';
 import './index.css';
 
-const gamesData = rawGamesData.filter(g => {
-  const cats = Array.isArray(g.category) ? g.category : [g.category];
-  // Keep all games EXCEPT Clicker games that are NOT cookie-clicker
-  if (cats.includes('Clicker') && g.id !== 'cookie-clicker') {
-    return false;
-  }
-  return true;
-}).map(g => {
+const gamesData = rawGamesData.map(g => {
   let cats = Array.isArray(g.category) ? g.category : [g.category];
-  // Remove RPG, Clicker, and Action from categories so they don't show up as sections
-  cats = cats.filter(c => c !== 'RPG' && c !== 'Clicker' && c !== 'Action');
+  // Remove RPG, Clicker, and Action from categories if they are too generic
+  // cats = cats.filter(c => c !== 'RPG' && c !== 'Clicker' && c !== 'Action');
   return { ...g, category: cats };
 });
 
@@ -30,7 +23,6 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [playerSearchQuery, setPlayerSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [filteredGames, setFilteredGames] = useState(gamesData);
   const [isCloaked, setIsCloaked] = useState(false);
   const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [cloakTitle, setCloakTitle] = useState('');
@@ -53,8 +45,8 @@ export default function App() {
     }
   }, [isCloaked, cloakTitle, cloakIcon]);
 
-  useEffect(() => {
-    const filtered = gamesData.filter(game => {
+  const filteredGames = useMemo(() => {
+    return gamesData.filter(game => {
       const matchesSearch = game.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                             game.description.toLowerCase().includes(searchQuery.toLowerCase());
       
@@ -69,10 +61,11 @@ export default function App() {
       
       return matchesSearch && matchesCategory;
     });
-    setFilteredGames(filtered);
   }, [searchQuery, selectedCategory, userData]);
 
-  const categories = ['All', 'Favorites', ...new Set(gamesData.flatMap(g => Array.isArray(g.category) ? g.category : [g.category]).filter(Boolean))];
+  const categories = useMemo(() => {
+    return ['All', 'Favorites', ...new Set(gamesData.flatMap(g => Array.isArray(g.category) ? g.category : [g.category]).filter(Boolean))];
+  }, []);
 
   const handlePlayGame = (game) => {
     setSelectedGame(game);
@@ -277,6 +270,9 @@ export default function App() {
                         alt={game.title}
                         referrerPolicy="no-referrer"
                         className="card-thumbnail"
+                        onError={(e) => {
+                          e.target.src = `https://picsum.photos/seed/${game.title}/400/250`;
+                        }}
                       />
                       <div className="card-overlay">
                         <div className="play-icon-circle">
@@ -340,7 +336,14 @@ export default function App() {
                             onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)'}
                             onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                           >
-                            <img src={game.thumbnail} alt={game.title} style={{ width: '32px', height: '32px', borderRadius: '0.25rem', objectFit: 'cover' }} />
+                            <img 
+                              src={game.thumbnail} 
+                              alt={game.title} 
+                              style={{ width: '32px', height: '32px', borderRadius: '0.25rem', objectFit: 'cover' }} 
+                              onError={(e) => {
+                                e.target.src = `https://picsum.photos/seed/${game.title}/32/32`;
+                              }}
+                            />
                             <span style={{ fontSize: '0.875rem', fontWeight: '500', color: 'white' }}>{game.title}</span>
                           </div>
                         ))}
@@ -367,6 +370,7 @@ export default function App() {
                     onClick={() => {
                       const iframe = document.querySelector('.game-iframe');
                       if (iframe) {
+                        // eslint-disable-next-line no-self-assign
                         iframe.src = iframe.src;
                       }
                     }}

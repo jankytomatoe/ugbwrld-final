@@ -4753,7 +4753,7 @@
   },
   {
     "id": 603,
-    "name": "Grow a Garden",
+    "name": "Growden.io",
     "cover": "{COVER_URL}/603.png",
     "url": "{HTML_URL}/603-aa.html",
     "author": "growden.io",
@@ -6084,7 +6084,7 @@
     "id": 756,
     "name": "Drive Mad",
     "cover": "https://monkeymart.org/wp-content/uploads/2023/09/drive-mad.png",
-    "url": "./drive-mad.html",
+    "url": "/drive-mad.html",
     "author": "Fancade",
     "authorLink": "https://poki.com/en/g/drive-mad",
     "special": ["driving"]
@@ -6102,7 +6102,7 @@
     "id": 758,
     "name": "FIFA 2000",
     "cover": "https://upload.wikimedia.org/wikipedia/en/6/6b/FIFA2000BoxArtUK.jpg",
-    "url": "./fifa-2000.html",
+    "url": "/fifa-2000.html",
     "author": "EA Sports",
     "authorLink": "https://www.ea.com/",
     "special": ["port"]
@@ -6111,7 +6111,7 @@
     "id": 759,
     "name": "FIFA 07",
     "cover": "https://m.media-amazon.com/images/I/71ipd-oeLIL._AC_UF1000,1000_QL80_.jpg",
-    "url": "./fifa-07.html",
+    "url": "/fifa-07.html",
     "author": "EA Sports",
     "authorLink": "https://www.ea.com/",
     "special": ["port"]
@@ -6120,7 +6120,7 @@
     "id": 760,
     "name": "FIFA SOCCER",
     "cover": "https://m.media-amazon.com/images/I/71ffbMEoWsL._AC_UF1000,1000_QL80_.jpg",
-    "url": "./fifa-soccer.html",
+    "url": "/fifa-soccer.html",
     "author": "EA Sports",
     "authorLink": "https://www.ea.com/",
     "special": ["port"]
@@ -6129,7 +6129,7 @@
     "id": 761,
     "name": "FIFA Road to World Cup 98",
     "cover": "https://assets-prd.ignimgs.com/2024/11/01/fifa986gb-1730502220903.jpg?crop=1%3A1%2Csmart&format=jpg&auto=webp&quality=80",
-    "url": "./fifa-98.html",
+    "url": "/fifa-98.html",
     "author": "EA Sports",
     "authorLink": "https://www.ea.com/",
     "special": ["port"]
@@ -6138,7 +6138,7 @@
     "id": 762,
     "name": "FIFA 06",
     "cover": "https://assets-prd.ignimgs.com/2023/01/21/fifa06-1674262346474.jpg",
-    "url": "./fifa-06.html",
+    "url": "/fifa-06.html",
     "author": "EA Sports",
     "authorLink": "https://www.ea.com/",
     "special": ["port"]
@@ -6147,7 +6147,7 @@
     "id": 763,
     "name": "FIFA Soccer 95",
     "cover": "https://images.stopgame.ru/games/logos/29178/fifa_soccer_95-square.jpg",
-    "url": "./fifa-95.html",
+    "url": "/fifa-95.html",
     "author": "EA Sports",
     "authorLink": "https://www.ea.com/",
     "special": ["port"]
@@ -6156,7 +6156,7 @@
     "id": 764,
     "name": "FIFA Soccer 96",
     "cover": "https://assets-prd.ignimgs.com/2024/01/18/fifa96-16-1705619763212.jpg?crop=1:1%2Csmart&format=jpg&auto=webp&quality=80",
-    "url": "./fifa-96.html",
+    "url": "/fifa-96.html",
     "author": "EA Sports",
     "authorLink": "https://www.ea.com/",
     "special": ["port"]
@@ -6165,7 +6165,7 @@
     "id": 765,
     "name": "FIFA Soccer 97",
     "cover": "https://origin.giantbomb.com/a/uploads/scale_medium/8/87790/2266512-box_fifa97.png",
-    "url": "./fifa-97.html",
+    "url": "/fifa-97.html",
     "author": "EA Sports",
     "authorLink": "https://www.ea.com/",
     "special": ["port"]
@@ -6174,7 +6174,7 @@
     "id": 766,
     "name": "Madden 93",
     "cover": "https://en.wikipedia.org/wiki/John_Madden_Football_%2793",
-    "url": "./madden-93.html",
+    "url": "/madden-93.html",
     "author": "EA Sports",
     "authorLink": "https://www.ea.com/",
     "special": ["port"]
@@ -6183,7 +6183,7 @@
     "id": 767,
     "name": "Madden 94",
     "cover": "https://assets-prd.ignimgs.com/2022/01/26/madden94-sq-1643159103097.jpg",
-    "url": "./madden-94.html",
+    "url": "/madden-94.html",
     "author": "EA Sports",
     "authorLink": "https://www.ea.com/",
     "special": ["port"]
@@ -6192,7 +6192,7 @@
     "id": 768,
     "name": "Madden 95",
     "cover": "https://en.wikipedia.org/wiki/Madden_NFL_%2795",
-    "url": "./madden-95.html",
+    "url": "/madden-95.html",
     "author": "EA Sports",
     "authorLink": "https://www.ea.com/",
     "special": ["port"]
@@ -6201,7 +6201,7 @@
     "id": 769,
     "name": "Madden 96",
     "cover": "https://cdn.thegamesdb.net/images/original/boxart/front/11160-1.jpg",
-    "url": "./madden-96.html",
+    "url": "/madden-96.html",
     "author": "EA Sports",
     "authorLink": "https://www.ea.com/",
     "special": ["port"]
@@ -6219,7 +6219,7 @@
     "id": 771,
     "name": "Mario Kart 64",
     "cover": "https://upload.wikimedia.org/wikipedia/en/a/a1/Mario_Kart_64.jpg",
-    "url": "./mario-kart-64.html",
+    "url": "/mario-kart-64.html",
     "author": "Nintendo",
     "authorLink": "https://www.nintendo.com/",
     "special": ["port"]
